@@ -390,6 +390,15 @@ $("btn-mission-roll").addEventListener("click", rollMission);
 // 예전 버전에서 저장했던 학생 이름이 브라우저에 남아 있다면 지움
 try { localStorage.removeItem("jumpRopeDice.names"); } catch (e) { /* 저장소를 쓸 수 없는 환경 */ }
 
+// ===== 오프라인 사용 준비 =====
+// 인터넷 주소(https)로 열었을 때만 서비스 워커를 등록해 앱 파일을 태블릿에 저장함.
+// 파일을 더블클릭해서 연 경우(file://)에는 등록하지 않아도 앱은 그대로 동작함.
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => { /* 등록 실패해도 앱은 동작 */ });
+  });
+}
+
 // ===== 처음 화면 그리기 =====
 drawDie(1);
 updateTimer();
