@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>줄넘기 주사위</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top">
+    <h1 class="title">줄넘기 주사위</h1>
+    <div class="top-right">
+    <button class="sound-toggle" id="btn-sound" aria-pressed="true">소리 켜짐</button>
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="number" id="tab-number">숫자 주사위</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="mission" id="tab-mission">미션 주사위</button>
+    </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 탭 1: 숫자 주사위 -->
+    <section class="panel is-active" id="panel-number" role="tabpanel" aria-labelledby="tab-number">
+      <div class="number-layout">
+      <div class="number-left">
+      <div class="status-row">
+        <div class="stat">
+          <div class="stat-label">남은 시간</div>
+          <div class="stat-value" id="timer">3:00</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">누적 합 / 목표</div>
+          <div class="stat-value"><span id="sum">0</span><span class="goal"> / <span id="goal">30</span></span></div>
+        </div>
+      </div>
+
+      <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+      </div>
+      <div class="number-right">
+
+      <div class="dice-area">
+        <div class="die" id="number-die" aria-live="polite" aria-label="주사위"></div>
+        <div class="last-roll" id="last-roll">시작 버튼을 누르세요</div>
+      </div>
+      </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-start" id="btn-start">시작</button>
+        <button class="btn btn-roll" id="btn-roll" disabled>주사위 굴리기</button>
+        <button class="btn btn-stop" id="btn-stop" disabled>정지</button>
+      </div>
+
+      <div class="sub-controls">
+        <button class="btn-small" id="btn-reset">처음부터 다시</button>
+      </div>
+
+      <ol class="history" id="history" aria-label="굴린 기록"></ol>
+    </section>
+
+    <!-- 탭 2: 미션 주사위 -->
+    <section class="panel" id="panel-mission" role="tabpanel" aria-labelledby="tab-mission" hidden>
+      <div class="dice-area">
+        <div class="mission-die" id="mission-die">
+          <span id="mission-text">?</span>
+        </div>
+        <div class="last-roll" id="mission-hint">주사위를 굴려 미션을 정하세요</div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-roll" id="btn-mission-roll">미션 주사위 굴리기</button>
+      </div>
+
+      <ul class="mission-list" id="mission-list" aria-label="미션 목록"></ul>
+    </section>
+  </main>
+
+  <!-- 결과/안내 팝업 -->
+  <div class="overlay" id="popup" hidden>
+    <div class="popup-box" id="popup-box">
+      <div class="popup-title" id="popup-title"></div>
+      <div class="popup-text" id="popup-text"></div>
+      <button class="btn btn-start" id="popup-close" hidden>확인</button>
+    </div>
+  </div>
+
+  <!-- 확인 창 (브라우저 confirm 대신) -->
+  <div class="overlay" id="confirm" hidden>
+    <div class="popup-box">
+      <div class="popup-text" id="confirm-text"></div>
+      <div class="controls">
+        <button class="btn btn-stop" id="confirm-yes">예</button>
+        <button class="btn btn-ghost" id="confirm-no">아니요</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
