@@ -1,8 +1,8 @@
 // 줄넘기 주사위 - 순수 JavaScript (외부 라이브러리, 외부 전송, 저장 기능 없음)
 
 // ===== 바꾸기 쉬운 설정값 =====
-const GOAL_SUM = 30;            // 숫자 주사위: 성공 목표 (이 숫자 이상이면 성공)
-const TIME_LIMIT_SEC = 180;     // 숫자 주사위: 제한 시간 (초) = 3분
+const GOAL_SUM = 50;            // 숫자 주사위: 성공 목표 (이 숫자 이상이면 성공)
+const TIME_LIMIT_SEC = 240;     // 숫자 주사위: 제한 시간 (초) = 4분
 const MISSION_COUNT = 30;       // 미션 주사위: 채울 횟수
 const MISSIONS = [
   "왼발로만 뛰기",
@@ -290,7 +290,7 @@ function finishNumber(reason) {
     });
     Sound.success();
   } else if (reason === "timeout") {
-    showPopup({ title: "시간 종료", text: "3분이 지났어요. 다시 도전해 봐요", kind: "fail" });
+    showPopup({ title: "시간 종료", text: Math.round(TIME_LIMIT_SEC / 60) + "분이 지났어요. 다시 도전해 봐요", kind: "fail" });
     Sound.fail();
   } else {
     showPopup({

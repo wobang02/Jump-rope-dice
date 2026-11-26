@@ -3,7 +3,7 @@
 // 그 뒤에는 인터넷이 없어도 저장된 파일로 앱을 연다.
 // 파일을 고친 뒤에는 CACHE_VERSION 숫자를 하나 올려 주면 새 버전으로 바뀐다.
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const CACHE_NAME = "jump-rope-dice-" + CACHE_VERSION;
 const FILES = [
   "./",
